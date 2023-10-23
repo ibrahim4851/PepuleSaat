@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "911597344058",
+    "project_id": "pepule-app",
+    "storage_bucket": "pepule-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911597344058:android:5f5e50e627dfa0dd98ec03",
+        "android_client_info": {
+          "package_name": "com.sultan.pepulesaat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP-A9SuO4sUtBehLXohqyVh1dyuVm6yEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
