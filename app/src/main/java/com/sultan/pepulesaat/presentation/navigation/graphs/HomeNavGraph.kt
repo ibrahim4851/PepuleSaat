@@ -40,7 +40,7 @@ fun HomeNavGraph(navController: NavHostController) {
     }
 }
 
-fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
+fun NavGraphBuilder.detailsNavGraph(navController: NavController) {
     navigation(
         route = Graph.PRODUCT_DETAIL,
         startDestination = DetailsRoutes.ProductDetails.route
@@ -56,6 +56,9 @@ fun NavGraphBuilder.cartOrderNavGraph(navController: NavController) {
         route = Graph.CART_ORDER,
         startDestination = CartOrderRoutes.Payment.route
     ) {
+        composable(route = CartOrderRoutes.Payment.route) {
+            PaymentScreen(navController = navController)
+        }
         composable(route = CartOrderRoutes.Success.route) {
             SuccessScreen(navController = navController)
         }

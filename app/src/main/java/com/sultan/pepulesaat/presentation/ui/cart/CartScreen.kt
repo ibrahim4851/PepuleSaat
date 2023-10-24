@@ -36,6 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import com.sultan.pepulesaat.presentation.navigation.BottomBar
 import com.sultan.pepulesaat.presentation.navigation.graphs.CartOrderRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
+import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +66,7 @@ fun CartScreen(
                 },
                 actions = {
                     IconButton(onClick = {
-                        navController.navigate(CartOrderRoutes.Payment.route)
+                        navController.navigate(Graph.CART_ORDER)
                     }) {
                         Icon(
                             imageVector = Icons.Filled.Done,

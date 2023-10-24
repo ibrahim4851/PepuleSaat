@@ -23,15 +23,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.sultan.pepulesaat.presentation.navigation.graphs.AuthScreen
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
-import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 import com.sultan.pepulesaat.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
