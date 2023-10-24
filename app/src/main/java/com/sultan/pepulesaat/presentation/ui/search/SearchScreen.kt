@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
@@ -30,10 +31,11 @@ import com.sultan.pepulesaat.presentation.ui.home.ProductItem
 @Composable
 fun SearchScreen(
     navController: NavController,
-    viewModel: SearchViewModel = hiltViewModel()) {
+    viewModel: SearchViewModel = hiltViewModel()
+) {
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-    var searchQuery by remember { mutableStateOf("") }
+    var searchQuery by remember { mutableStateOf("versace") }
     val state = viewModel.state.value
 
     Surface(modifier = Modifier.fillMaxSize()) {
@@ -53,26 +55,29 @@ fun SearchScreen(
             Column(
                 modifier = Modifier
                     .padding(values)
-                    .padding(start = 8.dp, end = 8.dp)
+                    .padding(8.dp)
 
             ) {
                 OutlinedTextField(
                     value = searchQuery,
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
                     onValueChange = {
                         searchQuery = it
-                        if (searchQuery.length > 3){
+                        if (searchQuery.length > 3) {
                             viewModel
                                 .onEvent(
                                     SearchScreenEvent.SearchProduct(searchQuery = it)
                                 )
-                        } })
+                        }
+                    }
+                )
 
                 state.products.let {
                     LazyVerticalGrid(
                         modifier = Modifier,
                         columns = GridCells.Fixed(2)
                     ) {
-                        items(it){ product ->
+                        items(it) { product ->
                             ProductItem(
                                 productDTO = product,
                                 onClick = {

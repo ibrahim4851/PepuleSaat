@@ -5,7 +5,11 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -73,21 +77,21 @@ fun CartScreen(
             )
         },
         bottomBar = {
-            BottomBar(navController = rememberNavController())
-        }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier.padding(
-                PaddingValues(bottom = innerPadding.calculateBottomPadding())
+            Box(
+                modifier = Modifier
+                    .height(56.dp)
+                    .fillMaxWidth()
             )
-        ) {
+        },
+        content = { innerPadding ->
             Column(
                 modifier = Modifier
-                    .padding(start = 8.dp, end = 8.dp)
+                    .padding(16.dp)
+                    .fillMaxSize()
             ) {
                 state.products.let {
                     LazyVerticalGrid(
-                        modifier = Modifier,
+                        contentPadding = innerPadding,
                         verticalArrangement = Arrangement.spacedBy(12.dp),
                         columns = GridCells.Fixed(1)
                     ) {
@@ -95,21 +99,22 @@ fun CartScreen(
                             CartProductItem(
                                 productDTO = product,
                                 onRemoveClick = {
-                                    viewModel
-                                        .onEvent(
-                                            CartEvent
-                                                .RemoveFromCart(product.id)
-                                        )
+                                    viewModel.onEvent(
+                                        CartEvent.RemoveFromCart(product.id)
+                                    )
                                 }
                             )
                         }
                     }
-                    Button(onClick = { /*TODO*/ }) {
-                        Text(text = "Proceed Order")
+                    Box(modifier = Modifier
+                        .fillMaxWidth()
+                        .height(intrinsicSize = IntrinsicSize.Max)) {
+                        Button(onClick = { /*TODO*/ }) {
+                            Text(text = "Proceed Order")
+                        }
                     }
                 }
             }
         }
-    }
-
+    )
 }

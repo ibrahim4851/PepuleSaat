@@ -1,6 +1,5 @@
 package com.sultan.pepulesaat.presentation.ui.detail
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -46,7 +45,6 @@ fun ProductDetailScreen(
 
     val state = viewModel.state.value
     val context = LocalContext.current
-    Log.i("37238975298572493298", state.isFavorite.toString())
 
     LaunchedEffect(state.addedToCartMessage) {
         if (state.addedToCartMessage.isNotBlank()) {

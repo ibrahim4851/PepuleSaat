@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sultan.pepulesaat.data.network.Resource
 import com.sultan.pepulesaat.domain.usecase.GetProductsUseCase
-import com.sultan.pepulesaat.domain.usecase.GetSaleProductsUseCase
-import com.sultan.pepulesaat.presentation.ui.BaseProductScreenState
+import com.sultan.pepulesaat.presentation.ui.FeedScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -15,12 +14,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getProductsUseCase: GetProductsUseCase,
-    private val getSaleProductsUseCase: GetSaleProductsUseCase
+    private val getProductsUseCase: GetProductsUseCase
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(BaseProductScreenState())
-    val state : State<BaseProductScreenState> = _state
+    private val _state = mutableStateOf(FeedScreenState())
+    val state : State<FeedScreenState> = _state
 
     init {
         getAllProducts()
@@ -30,13 +28,14 @@ class HomeViewModel @Inject constructor(
         getProductsUseCase.executeGetProducts().onEach {
             when(it){
                 is Resource.Success -> {
-                    _state.value = BaseProductScreenState(products = it.data ?: emptyList())
+                    val saleProducts = it.data!!.filter { it.saleState }
+                    _state.value = FeedScreenState(products = it.data, saleProducts = saleProducts)
                 }
                 is Resource.Error -> {
-                    _state.value = BaseProductScreenState(error = it.message ?: "Error!")
+                    _state.value = FeedScreenState(error = it.message ?: "Error!")
                 }
                 is Resource.Loading -> {
-                    _state.value = BaseProductScreenState(isLoading = true)
+                    _state.value = FeedScreenState(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)
