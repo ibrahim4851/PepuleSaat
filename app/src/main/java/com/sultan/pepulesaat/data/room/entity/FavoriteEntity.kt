@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class FavoriteEntity(
     @PrimaryKey(autoGenerate = true)
     val favoriteId: Long,
+    val userId: String,
     val productId: Int,
     val productTitle: String,
     val imageLink: String,

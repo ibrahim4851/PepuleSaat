@@ -7,12 +7,12 @@ typealias Favorites = List<FavoriteEntity>
 
 interface FavoriteRepository {
 
-    fun getAllFavorites(): Flow<Favorites>
+    fun getUserFavorites(userId: String): Flow<Favorites>
 
     suspend fun insertFavorite(favoriteEntity: FavoriteEntity)
 
     suspend fun deleteFavorite(favoriteEntity: FavoriteEntity)
 
-    suspend fun getFavoriteByProductId(productId: Int): FavoriteEntity?
+    suspend fun getFavoriteByProductId(userId: String, productId: Int): FavoriteEntity?
 
 }

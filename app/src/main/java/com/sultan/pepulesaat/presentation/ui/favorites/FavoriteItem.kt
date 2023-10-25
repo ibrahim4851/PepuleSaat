@@ -55,16 +55,3 @@ fun FavoriteItem(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun FavoriteItemPreview(){
-    FavoriteItem(favoriteEntity = FavoriteEntity(
-        1L,
-        1,
-        "VANESSA",
-        "",
-        "132.88"
-    ),
-        onRemoveClick = {})
-}

@@ -1,5 +1,6 @@
 package com.sultan.pepulesaat.presentation.ui.favorites
 
+import android.content.SharedPreferences
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -14,18 +15,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
-    private val repository: FavoriteRepository
+    private val repository: FavoriteRepository,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
     private val _state = mutableStateOf(FavoriteState())
     val state: State<FavoriteState> = _state
+    val userId: String = sharedPreferences.getString("userId", null).toString()
 
     init {
         getFavorites()
     }
 
     private fun getFavorites() = viewModelScope.launch {
-        repository.getAllFavorites().onEach {
+        repository.getUserFavorites(userId).onEach {
             if (it.isNotEmpty()) {
                 _state.value = FavoriteState(favorites = it)
             } else {

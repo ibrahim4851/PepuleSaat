@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 class FavoriteRepositoryImpl(
     private val dao: FavoriteDao): FavoriteRepository {
 
-    override fun getAllFavorites() = dao.getAllFavorites()
+    override fun getUserFavorites(userId: String) = dao.getUserFavorites(userId)
 
     override suspend fun insertFavorite(favoriteEntity: FavoriteEntity) {
         dao.insertFavorite(favoriteEntity)
@@ -19,7 +19,7 @@ class FavoriteRepositoryImpl(
         dao.deleteFavorite(favoriteEntity)
     }
 
-    override suspend fun getFavoriteByProductId(productId: Int): FavoriteEntity? {
-        return dao.getFavoriteByProductId(productId)
+    override suspend fun getFavoriteByProductId(userId: String, productId: Int): FavoriteEntity? {
+        return dao.getFavoriteByProductId(userId, productId)
     }
 }

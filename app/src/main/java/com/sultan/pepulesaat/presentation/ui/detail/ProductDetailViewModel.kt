@@ -31,6 +31,7 @@ class ProductDetailViewModel @Inject constructor(
 
     private val _state = mutableStateOf(ProductDetailScreenState())
     val state: State<ProductDetailScreenState> = _state
+    val userId: String = sharedPreferences.getString("userId", null).toString()
 
     init {
         savedStateHandle.get<String>("productId")?.let {
@@ -61,7 +62,6 @@ class ProductDetailViewModel @Inject constructor(
     }
 
     private fun performAddToCart(productId: Int) {
-        val userId: String = sharedPreferences.getString("userId", null).toString()
         addToCartUseCase.executeAddToCart(addToCartModel = AddToCartModel(userId, productId))
             .onEach {
                 when (it) {
@@ -81,23 +81,21 @@ class ProductDetailViewModel @Inject constructor(
     }
 
     private fun isFavorite(productId: Int) = viewModelScope.launch {
-        val isFavorite = favoriteRepository.getFavoriteByProductId(productId)
+        val isFavorite = favoriteRepository.getFavoriteByProductId(userId, productId)
         if (isFavorite != null) {
-            Log.i(" 87904867094356865", productId.toString())
             val newState = _state.value.copy(isFavorite = true)
             _state.value = newState
-            Log.i("32141242431245125", _state.value.isFavorite.toString())
         }
     }
 
     private fun performAddFavorite(product: ProductDTO) = viewModelScope.launch {
-        favoriteRepository.insertFavorite(product.toFavoriteEntity())
+        favoriteRepository.insertFavorite(product.toFavoriteEntity(userId))
         val newState = _state.value.copy(isFavorite = true)
         _state.value = newState
     }
 
     private fun performRemoveFavorite(product: ProductDTO) = viewModelScope.launch {
-        favoriteRepository.deleteFavorite(favoriteRepository.getFavoriteByProductId(product.id)!!)
+        favoriteRepository.deleteFavorite(favoriteRepository.getFavoriteByProductId(userId, product.id)!!)
         val newState = _state.value.copy(isFavorite = false)
         _state.value = newState
     }
