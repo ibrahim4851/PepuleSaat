@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -55,7 +56,8 @@ fun SaleProductItem(
             modifier = Modifier
                 .width(IntrinsicSize.Max)
                 .height(IntrinsicSize.Max)
-                .background(Green, shape = shape)
+                .background(color = MaterialTheme.colorScheme.primaryContainer,
+                    shape = shape)
                 .padding(3.dp)
         ) {
 

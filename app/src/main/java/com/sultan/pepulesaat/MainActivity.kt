@@ -19,8 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PepuleSaatTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize()
                 ){
                     RootNavigationGraph(navController = rememberNavController())
                 }

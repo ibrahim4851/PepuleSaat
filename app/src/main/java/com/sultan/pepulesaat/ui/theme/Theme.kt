@@ -19,16 +19,18 @@ import androidx.core.view.WindowCompat
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
+    primaryContainer = Color.Blue
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Yellow900,
     secondary = PurpleGrey40,
     tertiary = Pink40,
-
     background = Color(0xFFFFFBFE),
     surface = Yellow800,
+    surfaceVariant = Yellow600,
+    tertiaryContainer = Yellow900,
     primaryContainer = Yellow500,
     surfaceTint = Yellow500,
     onPrimary = Color.White,
@@ -38,6 +40,7 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     error = Color.Red,
 )
+
 
 @Composable
 fun PepuleSaatTheme(

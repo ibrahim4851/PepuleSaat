@@ -1,6 +1,5 @@
 package com.sultan.pepulesaat.presentation.ui.home
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -62,9 +61,6 @@ fun FeedScreen(
                     },
                     scrollBehavior = scrollBehavior
                 )
-            },
-            bottomBar = {
-                Box(modifier = Modifier.height(56.dp))
             }
         ) { values ->
             Column(
@@ -84,7 +80,7 @@ fun FeedScreen(
                         modifier = Modifier
                             .height(100.dp)
                             .padding(8.dp),
-                        rows = GridCells.Fixed(1)
+                        rows = GridCells.Fixed(1),
                     ) {
                         items(products) { product ->
                             SaleProductItem(

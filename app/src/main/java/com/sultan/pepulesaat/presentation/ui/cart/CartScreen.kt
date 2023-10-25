@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -32,10 +31,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.sultan.pepulesaat.presentation.navigation.BottomBar
-import com.sultan.pepulesaat.presentation.navigation.graphs.CartOrderRoutes
-import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

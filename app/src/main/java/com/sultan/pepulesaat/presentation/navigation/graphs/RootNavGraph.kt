@@ -12,17 +12,7 @@ import com.sultan.pepulesaat.presentation.navigation.HomeScreen
 @Composable
 fun RootNavigationGraph(navController: NavHostController) {
 
-    val context = LocalContext.current
-    val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
-
-    val userId = sharedPreferences.getString("userId", null)
-    var startScreen = ""
-    startScreen = if (userId == null) {
-        Graph.AUTHENTICATION
-    } else {
-        Graph.HOME
-    }
+    var startScreen = getFirebaseUser()
 
     NavHost(
         navController = navController,
@@ -34,6 +24,22 @@ fun RootNavigationGraph(navController: NavHostController) {
             HomeScreen()
         }
     }
+}
+
+@Composable
+private fun getFirebaseUser(): String {
+    val context = LocalContext.current
+    val sharedPreferences: SharedPreferences =
+        context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+
+    val userId = sharedPreferences.getString("userId", null)
+    var startScreen = ""
+    startScreen = if (userId == null) {
+        Graph.AUTHENTICATION
+    } else {
+        Graph.HOME
+    }
+    return startScreen
 }
 
 object Graph {
