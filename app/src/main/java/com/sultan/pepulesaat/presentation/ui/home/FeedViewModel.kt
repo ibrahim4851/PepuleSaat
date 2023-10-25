@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class FeedViewModel @Inject constructor(
     private val getProductsUseCase: GetProductsUseCase
 ) : ViewModel() {
 

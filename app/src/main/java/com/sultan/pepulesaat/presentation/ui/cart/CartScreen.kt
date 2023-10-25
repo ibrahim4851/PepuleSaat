@@ -63,16 +63,6 @@ fun CartScreen(
                 title = {
                     Text(text = "Cart")
                 },
-                actions = {
-                    IconButton(onClick = {
-                        navController.navigate(Graph.CART_ORDER)
-                    }) {
-                        Icon(
-                            imageVector = Icons.Filled.Done,
-                            contentDescription = null
-                        )
-                    }
-                },
                 scrollBehavior = scrollBehavior
             )
         },
@@ -85,7 +75,7 @@ fun CartScreen(
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = { },
+                onClick = { navController.navigate(Graph.CART_ORDER) },
                 icon = {
                     Icon(
                         painterResource(
@@ -119,9 +109,6 @@ fun CartScreen(
                                 }
                             )
                         }
-                    }
-                    Button(onClick = { /*TODO*/ }) {
-                        Text(text = "Proceed Order")
                     }
 
                 }

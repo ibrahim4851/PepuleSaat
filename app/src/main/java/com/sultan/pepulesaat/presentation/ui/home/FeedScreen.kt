@@ -1,6 +1,5 @@
 package com.sultan.pepulesaat.presentation.ui.home
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,7 +28,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.sultan.pepulesaat.presentation.navigation.graphs.AuthScreen
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 import com.sultan.pepulesaat.ui.theme.Typography
@@ -38,7 +36,7 @@ import com.sultan.pepulesaat.ui.theme.Typography
 @Composable
 fun FeedScreen(
     navController: NavController,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: FeedViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
