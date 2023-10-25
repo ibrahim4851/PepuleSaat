@@ -15,8 +15,10 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MediumTopAppBar
@@ -28,9 +30,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.sultan.pepulesaat.R
 import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -79,6 +83,20 @@ fun CartScreen(
                     .fillMaxWidth()
             )
         },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = { },
+                icon = {
+                    Icon(
+                        painterResource(
+                            id = R.drawable.baseline_shopping_cart_checkout
+                        ),
+                        ""
+                    )
+                },
+                text = { Text(text = "Checkout") },
+            )
+        },
         content = { innerPadding ->
             Column(
                 modifier = Modifier
@@ -102,13 +120,10 @@ fun CartScreen(
                             )
                         }
                     }
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(intrinsicSize = IntrinsicSize.Max)) {
-                        Button(onClick = { /*TODO*/ }) {
-                            Text(text = "Proceed Order")
-                        }
+                    Button(onClick = { /*TODO*/ }) {
+                        Text(text = "Proceed Order")
                     }
+
                 }
             }
         }

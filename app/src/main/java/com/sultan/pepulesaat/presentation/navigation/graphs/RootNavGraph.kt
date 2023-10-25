@@ -48,4 +48,5 @@ object Graph {
     const val HOME = "home_graph"
     const val PRODUCT_DETAIL = "details_graph"
     const val CART_ORDER = "cart_order_graph"
+    const val SIGN_OUT = "sign_out"
 }

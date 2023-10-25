@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sultan.pepulesaat.ui.theme.Yellow900
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -21,7 +22,7 @@ import kotlin.math.sin
 fun RatingBar(
     rating: Float,
     modifier: Modifier = Modifier,
-    color: Color = Color.Yellow
+    color: Color = Yellow900
 ) {
     Row(modifier = modifier.wrapContentSize()) {
         (1..5).forEach { step ->

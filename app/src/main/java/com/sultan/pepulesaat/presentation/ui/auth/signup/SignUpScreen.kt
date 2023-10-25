@@ -32,7 +32,6 @@ import com.sultan.pepulesaat.presentation.ui.auth.AuthEvent
 import com.sultan.pepulesaat.presentation.ui.auth.AuthViewModel
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(
     navController: NavController,

@@ -27,8 +27,8 @@ private val LightColorScheme = lightColorScheme(
     primary = Yellow900,
     secondary = PurpleGrey40,
     tertiary = Pink40,
-    background = Color(0xFFFFFBFE),
-    surface = Yellow800,
+    background = Yellow50,
+    surface = Yellow100,
     surfaceVariant = Yellow600,
     tertiaryContainer = Yellow900,
     primaryContainer = Yellow500,
@@ -54,7 +54,7 @@ fun PepuleSaatTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
+        darkTheme -> LightColorScheme
         else -> LightColorScheme
     }
     val view = LocalView.current

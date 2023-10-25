@@ -3,8 +3,8 @@ package com.sultan.pepulesaat.presentation.ui.auth.signout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -13,7 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.sultan.pepulesaat.R
-import com.sultan.pepulesaat.presentation.navigation.BottomBarScreen
+import com.sultan.pepulesaat.presentation.navigation.graphs.SignOutRoutes
 import com.sultan.pepulesaat.presentation.ui.auth.AuthEvent
 import com.sultan.pepulesaat.presentation.ui.auth.AuthViewModel
 
@@ -27,7 +27,7 @@ fun SignOutScreen(
 
     LaunchedEffect(state.isSignOutSuccessful) {
         if (state.isSignOutSuccessful) {
-            navController.navigate(BottomBarScreen.FeedScreen.route) {
+            navController.navigate(SignOutRoutes.Welcome.route) {
                 popUpTo(navController.graph.findStartDestination().id) {
                     inclusive = true
                 }

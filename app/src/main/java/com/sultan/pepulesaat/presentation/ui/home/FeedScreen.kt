@@ -1,7 +1,10 @@
 package com.sultan.pepulesaat.presentation.ui.home
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -28,6 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.sultan.pepulesaat.presentation.navigation.graphs.AuthScreen
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
+import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 import com.sultan.pepulesaat.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,7 +55,7 @@ fun FeedScreen(
                     },
                     actions = {
                         IconButton(onClick = {
-                            navController.navigate(AuthScreen.SignOut.route)
+                            navController.navigate(Graph.SIGN_OUT)
                         }) {
                             Icon(
                                 imageVector = Icons.Filled.AccountCircle,
@@ -60,6 +64,13 @@ fun FeedScreen(
                         }
                     },
                     scrollBehavior = scrollBehavior
+                )
+            },
+            bottomBar = {
+                Box(
+                    modifier = Modifier
+                        .height(56.dp)
+                        .fillMaxWidth()
                 )
             }
         ) { values ->

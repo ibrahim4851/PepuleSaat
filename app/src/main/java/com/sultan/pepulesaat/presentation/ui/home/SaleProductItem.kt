@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.sultan.pepulesaat.data.models.ProductDTO
@@ -38,6 +39,7 @@ fun SaleProductItem(
         modifier = Modifier
             .height(height)
             .width(width)
+            .padding(end = 8.dp)
             .background(Transparent, shape = shape)
             .clickable { onClick() },
         contentAlignment = Alignment.BottomEnd,
@@ -62,8 +64,9 @@ fun SaleProductItem(
         ) {
 
             Text(
-                text = productDTO.salePrice.toString(),
-                color = Red
+                text = productDTO.salePrice.toString() + "₺",
+                color = Red,
+                fontSize = 10.sp
             )
         }
 
