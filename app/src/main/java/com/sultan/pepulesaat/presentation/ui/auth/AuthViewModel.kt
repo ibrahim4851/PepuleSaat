@@ -29,8 +29,12 @@ class AuthViewModel @Inject constructor(
                     _state.value = AuthState(isSignInSuccessful = true)
                     editor.putString("userId", firebaseAuth.currentUser!!.uid)
                     editor.apply()
+                    val newState = _state.value.copy(isLoading = false)
+                    _state.value = newState
                 } else {
                     _state.value = AuthState(isSignInSuccessful = false)
+                    val newState = _state.value.copy(isLoading = false)
+                    _state.value = newState
                 }
             }
         }

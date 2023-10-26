@@ -30,10 +30,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.sultan.pepulesaat.presentation.navigation.graphs.AuthRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
+import com.sultan.pepulesaat.presentation.ui.auth.AuthEvent
+import com.sultan.pepulesaat.presentation.ui.auth.AuthViewModel
 import com.sultan.pepulesaat.presentation.ui.auth.signout.SignOutDialog
 import com.sultan.pepulesaat.ui.theme.Typography
 
@@ -41,9 +41,10 @@ import com.sultan.pepulesaat.ui.theme.Typography
 @Composable
 fun FeedScreen(
     navController: NavController,
-    viewModel: FeedViewModel = hiltViewModel()
+    feedViewModel: FeedViewModel = hiltViewModel(),
+    authViewModel: AuthViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val state = feedViewModel.state.value
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val openDialog = remember { mutableStateOf(false) }
 
@@ -53,11 +54,14 @@ fun FeedScreen(
             SignOutDialog(
                 onDismissRequest = { openDialog.value = false },
                 onConfirmation = {
-                    navController.navigate(Graph.AUTHENTICATION) {
-                        popUpTo(navController.graph.findStartDestination().id) {
+                    navController.navigate(route = Graph.AUTHENTICATION) {
+                        authViewModel.onEvent(AuthEvent.SignOut(""))
+                        launchSingleTop = true
+                        popUpTo(route = Graph.AUTHENTICATION) {
                             inclusive = true
                         }
                     }
+                    openDialog.value = false
                 },
                 dialogTitle = "Sign Out",
                 dialogText = "Do you want to sign out?"
@@ -75,8 +79,8 @@ fun FeedScreen(
                     },
                     actions = {
                         IconButton(onClick = {
-                            navController.navigate(AuthRoutes.SignOut.route)
-                            //openDialog.value = true
+                            //navController.navigate(AuthRoutes.SignOut.route)
+                            openDialog.value = true
                         }) {
                             Icon(
                                 imageVector = Icons.Filled.AccountCircle,

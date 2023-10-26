@@ -1,6 +1,7 @@
 package com.sultan.pepulesaat.presentation.ui.auth.signin
 
 import android.widget.Toast
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -100,7 +101,6 @@ fun SignInScreen(
                     painterResource(id = R.drawable.baseline_visibility)
                 else painterResource(id = R.drawable.baseline_visibility_off)
 
-                // Please provide localized description for accessibility services
                 val description = if (passwordVisible) "Hide password" else "Show password"
 
                 IconButton(onClick = {passwordVisible = !passwordVisible}){
@@ -110,26 +110,34 @@ fun SignInScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
 
+        Row(modifier = Modifier
+            .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ){
+            Spacer(modifier = Modifier.weight(1.5f))
+            Button(
+                modifier = Modifier.weight(7f),
+                onClick = {
+                    viewModel.onEvent(AuthEvent.SignIn(email, password))
+                    if (state.isSignInSuccessful) {
+                        navController.navigate(BottomBarScreen.FeedScreen.route)
+                    } else {
+                        if(!state.isLoading)
+                            Toast.makeText(
+                                context,
+                                "Couldn't Sign In. Please Check Your Internet Connection",
+                                Toast.LENGTH_LONG).show()
+                    }
+                },
+                enabled = email.isNotEmpty() && password.isNotEmpty()
+            ) {
+                Text(text = "Sign In")
+            }
+            Spacer(modifier = Modifier.weight(1.5f))
+        }
         ClickableText(
             text = AnnotatedString(text = "I don't have account"),
-            onClick = { navController.navigate(AuthRoutes.SignUp.route) }
+            onClick = { navController.navigate(AuthRoutes.SignUp.route)}
         )
-
-        Button(
-            onClick = {
-                viewModel.onEvent(AuthEvent.SignIn(email, password))
-                if (state.isSignInSuccessful) {
-                    navController.navigate(BottomBarScreen.FeedScreen.route)
-                } else {
-                    Toast.makeText(
-                        context,
-                        "Couldn't Sign In. Please Check Your Internet Connection",
-                        Toast.LENGTH_LONG).show()
-                }
-            },
-            enabled = email.isNotEmpty() && password.isNotEmpty()
-        ) {
-            Text(text = "Sign In")
-        }
     }
 }
