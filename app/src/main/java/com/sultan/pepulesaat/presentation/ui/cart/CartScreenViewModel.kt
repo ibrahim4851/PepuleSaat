@@ -1,7 +1,6 @@
 package com.sultan.pepulesaat.presentation.ui.cart
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -83,11 +82,9 @@ class CartScreenViewModel @Inject constructor(
     }
 
     private fun clearCart() {
-        Log.i("userId", userId.toString())
         clearCartUseCase.executeClearCart(userId.toString()).onEach {
             when(it) {
                 is Resource.Success -> {
-                    Log.i("safd", it.data.toString())
                     _state.value = CartScreenState()
                 }
 

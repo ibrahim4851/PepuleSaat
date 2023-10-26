@@ -71,7 +71,7 @@ class ProductDetailViewModel @Inject constructor(
                     }
 
                     is Resource.Error -> {
-                        val newState = _state.value.copy(addedToCartMessage = it.data.toString())
+                        val newState = _state.value.copy(addedToCartMessage = it.message.toString())
                         _state.value = newState
                     }
 
