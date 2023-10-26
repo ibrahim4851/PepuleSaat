@@ -3,6 +3,9 @@ package com.sultan.pepulesaat.data.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.sultan.pepulesaat.data.network.PepuleApi
 import com.sultan.pepulesaat.data.repository.PepuleRepositoryImpl
@@ -45,7 +48,21 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
+        val chuckerCollector = ChuckerCollector(
+            context = context,
+            showNotification = true,
+            retentionPeriod = RetentionManager.Period.ONE_HOUR
+        )
+
+        val chuckerInterceptor = ChuckerInterceptor.Builder(context)
+            .collector(chuckerCollector)
+            .maxContentLength(250_000L)
+            .redactHeaders("Auth-Token", "Bearer")
+            .alwaysReadResponseBody(true)
+            .createShortcut(true)
+            .build()
+
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val originalRequest = chain.request()
@@ -54,16 +71,17 @@ object AppModule {
                     .build()
                 chain.proceed(newRequest)
             }
+            .addInterceptor(chuckerInterceptor)
             .build()
     }
 
     @Provides
     @Singleton
-    fun providePepuleApi(): PepuleApi {
+    fun providePepuleApi(@ApplicationContext context: Context): PepuleApi {
         return Retrofit.Builder()
             .baseUrl("https://api.canerture.com/ecommerce/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(provideOkHttpClient())
+            .client(provideOkHttpClient(context))
             .build()
             .create(PepuleApi::class.java)
     }
