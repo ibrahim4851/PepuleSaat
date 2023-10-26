@@ -63,7 +63,7 @@ fun CartScreen(
         topBar = {
             MediumTopAppBar(
                 title = {
-                    Text(text = "Cart")
+                    Text(text = "Sepet")
                 },
                 actions = {
                     IconButton(onClick = {
@@ -98,7 +98,7 @@ fun CartScreen(
                         ""
                     )
                 },
-                text = { Text(text = "Checkout") },
+                text = { Text(text = "Ödeme") },
             )
         },
         content = { innerPadding ->

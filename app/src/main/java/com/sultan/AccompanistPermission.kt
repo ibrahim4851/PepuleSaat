@@ -21,7 +21,7 @@ fun CheckPermission() {
     ) { isGranted ->
         if (isGranted) {
         } else {
-            Toast.makeText(context, "Bildirim Ayarlarından İzin Verebilirsiniz", Toast.LENGTH_LONG)
+            Toast.makeText(context, "Bildirim Ayarlarından İzin Verebilirsiniz", Toast.LENGTH_LONG).show()
         }
     }
 

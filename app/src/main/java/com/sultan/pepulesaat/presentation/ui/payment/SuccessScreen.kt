@@ -40,7 +40,7 @@ fun SuccessScreen(navController: NavController) {
         ) {
             Column {
                 Text(
-                    text = "Successful!",
+                    text = "Başarılı!",
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -57,7 +57,7 @@ fun SuccessScreen(navController: NavController) {
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         {
-            Text(text = "Home")
+            Text(text = "Ana Sayfa")
         }
     }
 }

@@ -130,7 +130,7 @@ fun ProductDetailScreen(
                                 )
 
                             }) {
-                            Text(text = "Add To Cart")
+                            Text(text = "Sepete Ekle")
                         }
                         IconButton(
                             modifier = Modifier.weight(1f),

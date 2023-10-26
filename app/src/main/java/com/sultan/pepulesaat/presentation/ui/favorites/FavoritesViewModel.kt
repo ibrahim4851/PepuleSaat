@@ -32,7 +32,7 @@ class FavoritesViewModel @Inject constructor(
             if (it.isNotEmpty()) {
                 _state.value = FavoriteState(favorites = it)
             } else {
-                _state.value = FavoriteState(message = "You don't have favorite product")
+                _state.value = FavoriteState(message = "Favorilere Eklenmiş Ürün Yok")
             }
         }.launchIn(viewModelScope)
     }

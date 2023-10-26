@@ -36,7 +36,7 @@ fun SignOutDialog(
                     onConfirmation()
                 }
             ) {
-                Text("Confirm")
+                Text("Onayla")
             }
         },
         dismissButton = {
@@ -45,7 +45,7 @@ fun SignOutDialog(
                     onDismissRequest()
                 }
             ) {
-                Text("Dismiss")
+                Text("Reddet")
             }
         }
     )

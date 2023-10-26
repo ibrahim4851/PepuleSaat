@@ -6,7 +6,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.sultan.pepulesaat.presentation.ui.auth.WelcomeScreen
 import com.sultan.pepulesaat.presentation.ui.auth.signin.SignInScreen
-import com.sultan.pepulesaat.presentation.ui.auth.signout.SignOutScreen
 import com.sultan.pepulesaat.presentation.ui.auth.signup.SignUpScreen
 
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
@@ -23,9 +22,6 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
         composable(route = AuthRoutes.Welcome.route) {
             WelcomeScreen(navController = navController)
         }
-        composable(route = AuthRoutes.SignOut.route) {
-            SignOutScreen(navController = navController)
-        }
     }
 }
 
@@ -33,5 +29,4 @@ sealed class AuthRoutes(val route: String) {
     object SignIn : AuthRoutes(route = "sign_in_screen")
     object SignUp : AuthRoutes(route = "sign_up_screen")
     object Welcome : AuthRoutes(route = "welcome_screen")
-    object SignOut : AuthRoutes(route = "sign_out_screen")
 }

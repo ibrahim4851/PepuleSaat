@@ -1,7 +1,5 @@
 package com.sultan.pepulesaat.domain.usecase
 
-import android.util.Log
-import com.sultan.pepulesaat.data.models.CategoriesResponseDTO
 import com.sultan.pepulesaat.data.network.Resource
 import com.sultan.pepulesaat.domain.repository.PepuleRepository
 import kotlinx.coroutines.flow.Flow
@@ -19,14 +17,13 @@ class GetCategoriesUseCase @Inject constructor(private val repository: PepuleRep
                 emit(Resource.Success(response.categories))
             }
             else{
-                Log.i("123452134", "no category")
-                emit(Resource.Error(message = "No Category Found"))
+                emit(Resource.Error(message = "Kategori Bulunamadı"))
             }
         }
         catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "Error123412512!"))
         } catch (e: IOError) {
-            emit(Resource.Error(message = "Could not reach internet"))
+            emit(Resource.Error(message = "İnternete erişilemiyor"))
         }
     }
 

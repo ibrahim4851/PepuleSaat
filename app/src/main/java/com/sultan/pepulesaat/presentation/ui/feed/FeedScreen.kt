@@ -63,8 +63,8 @@ fun FeedScreen(
                     }
                     openDialog.value = false
                 },
-                dialogTitle = "Sign Out",
-                dialogText = "Do you want to sign out?"
+                dialogTitle = "Çıkış Yap",
+                dialogText = "Gerçekten Çıkış Yapmak İstiyor musunuz?"
             )
         }
 
@@ -106,7 +106,7 @@ fun FeedScreen(
 
             ) {
                 Text(
-                    text = "Products On Sale",
+                    text = "İndirimdeki Ürünler",
                     style = Typography.bodySmall,
                     fontWeight = FontWeight.Light
                 )

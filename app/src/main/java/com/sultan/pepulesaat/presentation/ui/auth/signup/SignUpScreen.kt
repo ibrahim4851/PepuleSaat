@@ -57,7 +57,7 @@ fun SignUpScreen(
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
-                text = "Let us Introduce You to Best Watches in The World",
+                text = "Dünyanın En İyi Saatleriyle Tanışın.",
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.headlineLarge
             )
@@ -78,7 +78,7 @@ fun SignUpScreen(
                 if (!isEmailValid && email.length > 10) {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = "Email is not valid",
+                        text = "Email geçerli değil",
                         color = MaterialTheme.colorScheme.error
                     )
                 }
@@ -89,9 +89,9 @@ fun SignUpScreen(
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text("Parola") },
             placeholder = {
-                Text(text = "Password")
+                Text(text = "Parola")
             },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth(),
@@ -113,9 +113,9 @@ fun SignUpScreen(
         OutlinedTextField(
             value = passwordConfirmation,
             onValueChange = { passwordConfirmation = it },
-            label = { Text("Password Confirmation") },
+            label = { Text("Parola Onay") },
             placeholder = {
-                Text(text = "Password Again")
+                Text(text = "Parola Tekrar")
             },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth(),
@@ -124,7 +124,6 @@ fun SignUpScreen(
                     painterResource(id = R.drawable.baseline_visibility)
                 else painterResource(id = R.drawable.baseline_visibility_off)
 
-                // Please provide localized description for accessibility services
                 val description = if (passwordVisible) "Hide password" else "Show password"
 
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -144,20 +143,20 @@ fun SignUpScreen(
                     } else if (!validatePasswords(password, passwordConfirmation)) {
                         Toast.makeText(
                             context,
-                            "Passwords aren't matching",
+                            "Parolalar eşleşmiyor",
                             Toast.LENGTH_LONG
                         ).show()
                     } else {
                         Toast.makeText(
                             context,
-                            "Couldn't Sign In. Please Check Your Internet Connection",
+                            "Üye Olunamadı",
                             Toast.LENGTH_LONG
                         ).show()
                     }
                 }
             )
             {
-                Text(text = "Sign Up")
+                Text(text = "Üye Ol")
             }
             Spacer(modifier = Modifier.weight(3f))
         }

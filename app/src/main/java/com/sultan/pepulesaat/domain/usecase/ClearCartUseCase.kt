@@ -19,12 +19,12 @@ class ClearCartUseCase @Inject constructor(private val repository: PepuleReposit
                 emit(Resource.Success(response.message))
             }
             else {
-                emit(Resource.Error(message = "An Error Occurred While Clearing the Cart"))
+                emit(Resource.Error(message = "Sepet Ögeleri Kaldırılırken Bir Hata Oluştu"))
             }
         } catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "Error123412512!"))
         } catch (e: IOError) {
-            emit(Resource.Error(message = "Could not reach internet"))
+            emit(Resource.Error(message = "İnternete erişilemiyor"))
         }
     }
 

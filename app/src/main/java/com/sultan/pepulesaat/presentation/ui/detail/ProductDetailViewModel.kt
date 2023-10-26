@@ -50,7 +50,7 @@ class ProductDetailViewModel @Inject constructor(
                 }
 
                 is Resource.Error -> {
-                    val newState = _state.value.copy(error = it.message ?: "Error!")
+                    val newState = _state.value.copy(error = it.message ?: "Hata!")
                     _state.value = newState
                 }
 

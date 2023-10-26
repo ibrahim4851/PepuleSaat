@@ -1,6 +1,5 @@
 package com.sultan.pepulesaat.domain.usecase
 
-import android.util.Log
 import com.sultan.pepulesaat.data.models.ProductDTO
 import com.sultan.pepulesaat.data.network.Resource
 import com.sultan.pepulesaat.domain.repository.PepuleRepository
@@ -19,12 +18,12 @@ class GetCartProductsUseCase @Inject constructor(private val repository: PepuleR
                 emit(Resource.Success(response.products))
             }
             else{
-                emit(Resource.Error(message = "No Product Found"))
+                emit(Resource.Error(message = "Ürün Bulunamadı"))
             }
         } catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "Error123412512!"))
         } catch (e: IOError) {
-            emit(Resource.Error(message = "Could not reach internet"))
+            emit(Resource.Error(message = "İnternete erişilemiyor"))
         }
     }
 

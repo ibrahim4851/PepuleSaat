@@ -41,7 +41,7 @@ class CartScreenViewModel @Inject constructor(
                 }
 
                 is Resource.Error -> {
-                    _state.value = CartScreenState(error = it.message ?: "Error!")
+                    _state.value = CartScreenState(error = it.message ?: "Hata!")
                 }
 
                 is Resource.Loading -> {

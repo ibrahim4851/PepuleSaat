@@ -53,7 +53,7 @@ fun PaymentScreen(
             .padding(16.dp)
     ) {
         Text(
-            text = "Place Your Order Here",
+            text = "Siparişinizi Buradan Verin",
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.headlineLarge
         )
@@ -70,7 +70,7 @@ fun PaymentScreen(
             OutlinedTextField(
                 modifier = Modifier.weight(4f),
                 value = cardExpire,
-                label = { Text("Expire Date") },
+                label = { Text("Son Kullanma Tarihi") },
                 onValueChange = { cardExpire = it }
             )
 
@@ -88,8 +88,8 @@ fun PaymentScreen(
         ) {
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
-                placeholder = { Text("Address Line 1") },
-                label = { Text("Address Line 1") },
+                placeholder = { Text("Adres Satırı 1") },
+                label = { Text("Adres Satırı 1") },
                 value = address1,
                 onValueChange = { address1 = it }
             )
@@ -98,8 +98,8 @@ fun PaymentScreen(
 
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
-                placeholder = { Text("Address Line 2") },
-                label = { Text("Address Line 2") },
+                placeholder = { Text("Adres Satırı 2") },
+                label = { Text("Adres Satırı 2") },
                 value = address2,
                 onValueChange = { address2 = it }
             )
@@ -110,16 +110,16 @@ fun PaymentScreen(
         ) {
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
-                placeholder = { Text("City") },
-                label = { Text("City") },
+                placeholder = { Text("Şehir") },
+                label = { Text("Şehir") },
                 value = city,
                 onValueChange = { city = it }
             )
             Spacer(modifier = Modifier.padding(8.dp))
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
-                placeholder = { Text("Province") },
-                label = { Text("Province") },
+                placeholder = { Text("İlçe") },
+                label = { Text("İlçe") },
                 value = province,
                 onValueChange = { province = it }
             )
@@ -130,16 +130,16 @@ fun PaymentScreen(
         ) {
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
-                placeholder = { Text("Street") },
-                label = { Text("Street") },
+                placeholder = { Text("Sokak/Cadde") },
+                label = { Text("Sokak/Cadde") },
                 value = street,
                 onValueChange = { street = it }
             )
             Spacer(modifier = Modifier.padding(8.dp))
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
-                placeholder = { Text("Number") },
-                label = { Text("Number") },
+                placeholder = { Text("Kapı No") },
+                label = { Text("Kapı No") },
                 value = number,
                 onValueChange = { number = it }
             )
@@ -149,7 +149,7 @@ fun PaymentScreen(
             .padding(top = 16.dp)
             .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween){
-            Text(text = "Cart Total:", fontSize = 20.sp)
+            Text(text = "Sepet Toplamı:", fontSize = 20.sp)
             Text(state.cartTotal.toString() + "₺", fontSize = 20.sp)
         }
 
@@ -167,7 +167,7 @@ fun PaymentScreen(
                     )
                     navController.navigate(CartOrderRoutes.Success.route)
                 }) {
-                Text(text = "Place Order")
+                Text(text = "Sipariş Ver")
             }
         }
 

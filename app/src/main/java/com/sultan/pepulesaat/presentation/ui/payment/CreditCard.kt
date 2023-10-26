@@ -14,21 +14,26 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.ui.text.input.VisualTransformation
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreditCardTextField(
     value: String,
     onValueChange: (String) -> Unit
 ) {
-    var formattedValue by remember(value) { mutableStateOf(formatCreditCard(value)) }
+    var cursorPosition by remember { mutableStateOf(0) }
+
+    var formattedValue by remember(value, cursorPosition) {
+        mutableStateOf(formatCreditCard(value, cursorPosition))
+    }
 
     OutlinedTextField(
         value = formattedValue,
+        label = { Text(text = "Kredi Kartı Numarası")},
         onValueChange = {
-            formattedValue = formatCreditCard(it)
-            onValueChange(it.filter { it.isDigit() })
+            val filteredValue = it.filter { it.isDigit() }
+            cursorPosition = it.length
+            formattedValue = formatCreditCard(filteredValue, cursorPosition)
+            onValueChange(filteredValue)
         },
-        label = { Text("Credit Card Number") },
         keyboardOptions = KeyboardOptions.Default.copy(
             keyboardType = KeyboardType.Number
         ),
@@ -38,15 +43,22 @@ fun CreditCardTextField(
     )
 }
 
-private fun formatCreditCard(input: String): String {
+private fun formatCreditCard(input: String, cursorPosition: Int): String {
     val digitsOnly = input.filter { it.isDigit() }
-    return buildString {
+    val formatted = buildString {
         digitsOnly.chunked(4).forEachIndexed { index, chunk ->
             if (index > 0) append(" ")
             append(chunk)
         }
     }
+    val adjustedCursorPosition = cursorPosition + cursorPosition / 4
+    return if (adjustedCursorPosition < formatted.length) {
+        formatted.substring(0, adjustedCursorPosition) + " " + formatted.substring(adjustedCursorPosition)
+    } else {
+        formatted
+    }
 }
+
 
 @Preview(showBackground = true)
 @Composable

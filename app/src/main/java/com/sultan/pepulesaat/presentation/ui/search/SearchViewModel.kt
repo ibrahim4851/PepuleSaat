@@ -30,7 +30,7 @@ class SearchViewModel @Inject constructor(
                     _state.value = SearchState(products = it.data ?: emptyList())
                 }
                 is Resource.Error -> {
-                    _state.value = SearchState(error = it.message ?: "Error!")
+                    _state.value = SearchState(error = it.message ?: "Hata!")
                 }
                 is Resource.Loading -> {
                     _state.value = SearchState(isLoading = true)

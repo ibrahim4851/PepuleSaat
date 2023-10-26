@@ -23,7 +23,7 @@ class AddToCartUseCase @Inject constructor(private val repository: PepuleReposit
         } catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "Error123412512!"))
         } catch (e: IOError) {
-            emit(Resource.Error(message = "Could not reach internet"))
+            emit(Resource.Error(message = "İnternete erişilemiyor"))
         }
     }
 

@@ -50,7 +50,7 @@ fun WelcomeScreen(
             onClick = {
             navController.navigate(AuthRoutes.SignIn.route)
         }) {
-            Text(text = "Sign In")
+            Text(text = "Giriş Yap")
         }
 
         OutlinedButton(
@@ -59,7 +59,7 @@ fun WelcomeScreen(
                 navController.navigate(AuthRoutes.SignUp.route)
             }
         ) {
-            Text(text = "Register")
+            Text(text = "Kayıt Ol")
         }
     }
 }

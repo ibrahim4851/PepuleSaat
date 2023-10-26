@@ -14,28 +14,28 @@ sealed class BottomBarScreen(
 ) {
     object FeedScreen :
         BottomBarScreen(
-            title = "Feed",
+            title = "Pepule",
             icon = Icons.Filled.Home,
             route = "feed_screen"
         )
 
     object SearchScreen :
         BottomBarScreen(
-            title = "Search",
+            title = "Arama",
             icon = Icons.Filled.Search,
             route = "search_screen"
         )
 
     object CartScreen :
         BottomBarScreen(
-            title = "Cart",
+            title = "Sepet",
             icon = Icons.Filled.ShoppingCart,
             route = "cart_screen"
         )
 
     object FavoritesScreen :
         BottomBarScreen(
-            title = "Favorites",
+            title = "Favoriler",
             icon = Icons.Filled.Favorite,
             route = "favorite_screen"
         )

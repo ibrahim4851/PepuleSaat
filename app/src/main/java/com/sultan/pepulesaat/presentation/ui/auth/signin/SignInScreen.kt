@@ -74,7 +74,7 @@ fun SignInScreen(
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
-                text = "Let's Sign You In.",
+                text = "Ürünlerimizi Görün.",
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.displaySmall
             )
@@ -92,7 +92,7 @@ fun SignInScreen(
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text("Parola") },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -125,18 +125,18 @@ fun SignInScreen(
                         if(!state.isLoading)
                             Toast.makeText(
                                 context,
-                                "Couldn't Sign In. Please Check Your Internet Connection",
+                                "Giriş Yapılamadı",
                                 Toast.LENGTH_LONG).show()
                     }
                 },
                 enabled = email.isNotEmpty() && password.isNotEmpty()
             ) {
-                Text(text = "Sign In")
+                Text(text = "Giriş Yap")
             }
             Spacer(modifier = Modifier.weight(1.5f))
         }
         ClickableText(
-            text = AnnotatedString(text = "I don't have account"),
+            text = AnnotatedString(text = "Hesabım Yok"),
             onClick = { navController.navigate(AuthRoutes.SignUp.route)}
         )
     }

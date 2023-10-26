@@ -23,7 +23,7 @@ class DeleteFromCartUseCase @Inject constructor(private val repository: PepuleRe
         } catch (e: HttpException) {
             emit(Resource.Error(message = e.localizedMessage ?: "Error123412512!"))
         } catch (e: IOError) {
-            emit(Resource.Error(message = "Could not reach internet"))
+            emit(Resource.Error(message = "İnternete erişilemiyor"))
         }
     }
 

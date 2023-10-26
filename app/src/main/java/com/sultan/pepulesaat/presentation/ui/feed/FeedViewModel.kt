@@ -32,7 +32,7 @@ class FeedViewModel @Inject constructor(
                     _state.value = FeedScreenState(products = it.data, saleProducts = saleProducts)
                 }
                 is Resource.Error -> {
-                    _state.value = FeedScreenState(error = it.message ?: "Error!")
+                    _state.value = FeedScreenState(error = it.message ?: "Hata!")
                 }
                 is Resource.Loading -> {
                     _state.value = FeedScreenState(isLoading = true)
