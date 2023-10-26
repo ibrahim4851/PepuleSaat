@@ -145,7 +145,7 @@ fun ProductDetailScreen(
                         {
                             Icon(
                                 imageVector = if (state.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                                contentDescription = "FavoriteEntity",
+                                contentDescription = "",
                                 tint = if (state.isFavorite) Color.Red else Color.Gray
                             )
                         }

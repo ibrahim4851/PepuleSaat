@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.sultan.pepulesaat.presentation.navigation.BottomBarScreen
-import com.sultan.pepulesaat.presentation.ui.home.FeedScreen
+import com.sultan.pepulesaat.presentation.ui.feed.FeedScreen
 import com.sultan.pepulesaat.presentation.ui.payment.PaymentScreen
 import com.sultan.pepulesaat.presentation.ui.payment.SuccessScreen
 

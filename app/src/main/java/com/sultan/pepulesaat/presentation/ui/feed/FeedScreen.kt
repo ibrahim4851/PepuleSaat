@@ -1,4 +1,4 @@
-package com.sultan.pepulesaat.presentation.ui.home
+package com.sultan.pepulesaat.presentation.ui.feed
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,14 +22,19 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import com.sultan.pepulesaat.presentation.navigation.graphs.AuthRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
+import com.sultan.pepulesaat.presentation.ui.auth.signout.SignOutDialog
 import com.sultan.pepulesaat.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,8 +45,25 @@ fun FeedScreen(
 ) {
     val state = viewModel.state.value
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val openDialog = remember { mutableStateOf(false) }
 
     Surface(modifier = Modifier.fillMaxSize()) {
+
+        if (openDialog.value) {
+            SignOutDialog(
+                onDismissRequest = { openDialog.value = false },
+                onConfirmation = {
+                    navController.navigate(Graph.AUTHENTICATION) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            inclusive = true
+                        }
+                    }
+                },
+                dialogTitle = "Sign Out",
+                dialogText = "Do you want to sign out?"
+            )
+        }
+
         Scaffold(
             modifier = Modifier
                 .fillMaxSize()
@@ -53,7 +75,8 @@ fun FeedScreen(
                     },
                     actions = {
                         IconButton(onClick = {
-                            navController.navigate(Graph.SIGN_OUT)
+                            navController.navigate(AuthRoutes.SignOut.route)
+                            //openDialog.value = true
                         }) {
                             Icon(
                                 imageVector = Icons.Filled.AccountCircle,
@@ -82,9 +105,8 @@ fun FeedScreen(
                     text = "Products On Sale",
                     style = Typography.bodySmall,
                     fontWeight = FontWeight.Light
-                    )
-                state.saleProducts.let {
-                        products ->
+                )
+                state.saleProducts.let { products ->
                     LazyHorizontalGrid(
                         modifier = Modifier
                             .height(100.dp)

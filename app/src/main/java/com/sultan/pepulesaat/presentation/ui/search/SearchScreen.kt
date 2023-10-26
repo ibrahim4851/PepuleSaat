@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
-import com.sultan.pepulesaat.presentation.ui.home.ProductItem
+import com.sultan.pepulesaat.presentation.ui.feed.ProductItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

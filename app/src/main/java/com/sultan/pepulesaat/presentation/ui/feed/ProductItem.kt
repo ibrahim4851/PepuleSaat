@@ -1,4 +1,4 @@
-package com.sultan.pepulesaat.presentation.ui.home
+package com.sultan.pepulesaat.presentation.ui.feed
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

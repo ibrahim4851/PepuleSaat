@@ -22,7 +22,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.sultan.pepulesaat.R
-import com.sultan.pepulesaat.presentation.navigation.graphs.AuthScreen
+import com.sultan.pepulesaat.presentation.navigation.graphs.AuthRoutes
 
 @Composable
 fun WelcomeScreen(
@@ -48,7 +48,7 @@ fun WelcomeScreen(
         Button(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-            navController.navigate(AuthScreen.SignIn.route)
+            navController.navigate(AuthRoutes.SignIn.route)
         }) {
             Text(text = "Sign In")
         }
@@ -56,7 +56,7 @@ fun WelcomeScreen(
         OutlinedButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                navController.navigate(AuthScreen.SignUp.route)
+                navController.navigate(AuthRoutes.SignUp.route)
             }
         ) {
             Text(text = "Register")

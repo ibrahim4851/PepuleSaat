@@ -15,11 +15,10 @@ class GetCartProductsUseCase @Inject constructor(private val repository: PepuleR
     fun executeGetCartProducts(userId: String): Flow<Resource<List<ProductDTO>>> = flow {
         try {
             val response = repository.getCartProducts(userId)
-            if (response.status == 200){
+            if (response.status == 200) {
                 emit(Resource.Success(response.products))
             }
             else{
-                Log.i("123452134", "no produkt")
                 emit(Resource.Error(message = "No Product Found"))
             }
         } catch (e: HttpException) {

@@ -12,22 +12,26 @@ import com.sultan.pepulesaat.presentation.ui.auth.signup.SignUpScreen
 fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     navigation(
         route = Graph.AUTHENTICATION,
-        startDestination = AuthScreen.Welcome.route
+        startDestination = AuthRoutes.Welcome.route
     ) {
-        composable(route = AuthScreen.SignIn.route) {
+        composable(route = AuthRoutes.SignIn.route) {
             SignInScreen(navController = navController)
         }
-        composable(route = AuthScreen.SignUp.route) {
+        composable(route = AuthRoutes.SignUp.route) {
             SignUpScreen(navController = navController)
         }
-        composable(route = AuthScreen.Welcome.route) {
+        composable(route = AuthRoutes.Welcome.route) {
             WelcomeScreen(navController = navController)
+        }
+        composable(route = AuthRoutes.SignOut.route) {
+            SignOutScreen(navController = navController)
         }
     }
 }
 
-sealed class AuthScreen(val route: String) {
-    object SignIn : AuthScreen(route = "sign_in_screen")
-    object SignUp : AuthScreen(route = "sign_up_screen")
-    object Welcome : AuthScreen(route = "welcome_screen")
+sealed class AuthRoutes(val route: String) {
+    object SignIn : AuthRoutes(route = "sign_in_screen")
+    object SignUp : AuthRoutes(route = "sign_up_screen")
+    object Welcome : AuthRoutes(route = "welcome_screen")
+    object SignOut : AuthRoutes(route = "sign_out_screen")
 }

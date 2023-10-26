@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import com.sultan.pepulesaat.presentation.navigation.BottomBarScreen
 import com.sultan.pepulesaat.presentation.ui.cart.CartScreen
 import com.sultan.pepulesaat.presentation.ui.favorites.FavoritesScreen
-import com.sultan.pepulesaat.presentation.ui.home.FeedScreen
+import com.sultan.pepulesaat.presentation.ui.feed.FeedScreen
 import com.sultan.pepulesaat.presentation.ui.search.SearchScreen
 
 @Composable
@@ -31,6 +31,6 @@ fun HomeNavGraph(navController: NavHostController) {
         }
         detailsNavGraph(navController = navController)
         cartOrderNavGraph(navController = navController)
-        signOutNavGraph(navController = navController)
+        authNavGraph(navController = navController)
     }
 }

@@ -1,4 +1,4 @@
-package com.sultan.pepulesaat.presentation.ui.home
+package com.sultan.pepulesaat.presentation.ui.feed
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

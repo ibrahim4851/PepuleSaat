@@ -20,14 +20,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.sultan.pepulesaat.presentation.navigation.graphs.CartOrderRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
+import com.sultan.pepulesaat.presentation.ui.cart.CartEvent
+import com.sultan.pepulesaat.presentation.ui.cart.CartScreenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PaymentScreen(navController: NavController) {
+fun PaymentScreen(
+    navController: NavController,
+    viewModel: CartScreenViewModel = hiltViewModel()
+) {
+
+    val state = viewModel.state.value
 
     var cardNumber by remember { mutableStateOf("") }
     var cardExpire by remember { mutableStateOf("") }
@@ -40,7 +49,8 @@ fun PaymentScreen(navController: NavController) {
     var street by remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier
+            .padding(16.dp)
     ) {
         Text(
             text = "Place Your Order Here",
@@ -60,10 +70,15 @@ fun PaymentScreen(navController: NavController) {
             OutlinedTextField(
                 modifier = Modifier.weight(4f),
                 value = cardExpire,
+                label = { Text("Expire Date") },
                 onValueChange = { cardExpire = it }
             )
+
+            Spacer(modifier = Modifier.weight(1f))
+
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
+                label = { Text("CVV") },
                 value = cardCvv,
                 onValueChange = { cardCvv = it })
         }
@@ -74,12 +89,17 @@ fun PaymentScreen(navController: NavController) {
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
                 placeholder = { Text("Address Line 1") },
+                label = { Text("Address Line 1") },
                 value = address1,
                 onValueChange = { address1 = it }
             )
+
+            Spacer(modifier = Modifier.padding(8.dp))
+
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
-                placeholder = { Text("Address Line 1") },
+                placeholder = { Text("Address Line 2") },
+                label = { Text("Address Line 2") },
                 value = address2,
                 onValueChange = { address2 = it }
             )
@@ -91,12 +111,15 @@ fun PaymentScreen(navController: NavController) {
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
                 placeholder = { Text("City") },
+                label = { Text("City") },
                 value = city,
                 onValueChange = { city = it }
             )
+            Spacer(modifier = Modifier.padding(8.dp))
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
                 placeholder = { Text("Province") },
+                label = { Text("Province") },
                 value = province,
                 onValueChange = { province = it }
             )
@@ -108,15 +131,26 @@ fun PaymentScreen(navController: NavController) {
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
                 placeholder = { Text("Street") },
+                label = { Text("Street") },
                 value = street,
                 onValueChange = { street = it }
             )
+            Spacer(modifier = Modifier.padding(8.dp))
             OutlinedTextField(
                 modifier = Modifier.weight(3f),
                 placeholder = { Text("Number") },
+                label = { Text("Number") },
                 value = number,
                 onValueChange = { number = it }
             )
+        }
+
+        Row(modifier = Modifier
+            .padding(top = 16.dp)
+            .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween){
+            Text(text = "Cart Total:", fontSize = 20.sp)
+            Text(state.cartTotal.toString() + "₺", fontSize = 20.sp)
         }
 
         Row(
@@ -124,8 +158,15 @@ fun PaymentScreen(navController: NavController) {
             horizontalArrangement = Arrangement.Center
         ) {
             Button(
-                modifier = Modifier.padding(top = 10.dp),
-                onClick = { navController.navigate(CartOrderRoutes.Success.route) }) {
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .fillMaxWidth(),
+                onClick = {
+                    viewModel.onEvent(
+                        CartEvent.ClearCart("")
+                    )
+                    navController.navigate(CartOrderRoutes.Success.route)
+                }) {
                 Text(text = "Place Order")
             }
         }

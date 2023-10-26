@@ -15,14 +15,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -39,11 +36,10 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.sultan.pepulesaat.R
 import com.sultan.pepulesaat.presentation.navigation.BottomBarScreen
-import com.sultan.pepulesaat.presentation.navigation.graphs.AuthScreen
+import com.sultan.pepulesaat.presentation.navigation.graphs.AuthRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 import com.sultan.pepulesaat.presentation.ui.auth.AuthEvent
 import com.sultan.pepulesaat.presentation.ui.auth.AuthViewModel
-import kotlinx.coroutines.launch
 
 @Composable
 fun SignInScreen(
@@ -116,7 +112,7 @@ fun SignInScreen(
 
         ClickableText(
             text = AnnotatedString(text = "I don't have account"),
-            onClick = { navController.navigate(AuthScreen.SignUp.route) }
+            onClick = { navController.navigate(AuthRoutes.SignUp.route) }
         )
 
         Button(
