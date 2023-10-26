@@ -29,7 +29,6 @@ import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
 import com.sultan.pepulesaat.presentation.ui.cart.CartEvent
 import com.sultan.pepulesaat.presentation.ui.cart.CartScreenViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PaymentScreen(
     navController: NavController,
@@ -59,10 +58,8 @@ fun PaymentScreen(
         )
         
         Spacer(modifier = Modifier.padding(18.dp))
-        CreditCardTextField(
-            value = cardNumber,
-            onValueChange = { cardNumber = it }
-        )
+
+        CardNumber()
 
         Row(
             modifier = Modifier.fillMaxWidth()

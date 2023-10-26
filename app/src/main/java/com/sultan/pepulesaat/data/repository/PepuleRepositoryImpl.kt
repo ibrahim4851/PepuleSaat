@@ -1,6 +1,5 @@
 package com.sultan.pepulesaat.data.repository
 
-import android.util.Log
 import com.sultan.pepulesaat.data.models.AddToCartModel
 import com.sultan.pepulesaat.data.models.BaseResponseDTO
 import com.sultan.pepulesaat.data.models.CategoriesResponseDTO
