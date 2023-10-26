@@ -1,8 +1,10 @@
 package com.sultan.pepulesaat.data.repository
 
+import android.util.Log
 import com.sultan.pepulesaat.data.models.AddToCartModel
 import com.sultan.pepulesaat.data.models.BaseResponseDTO
 import com.sultan.pepulesaat.data.models.CategoriesResponseDTO
+import com.sultan.pepulesaat.data.models.ClearCartModel
 import com.sultan.pepulesaat.data.models.DeleteFromCartModel
 import com.sultan.pepulesaat.data.models.ProductDetailDTO
 import com.sultan.pepulesaat.data.models.ProductsResponseDTO
@@ -48,7 +50,7 @@ class PepuleRepositoryImpl @Inject constructor(private val api: PepuleApi) : Pep
         return api.deleteFromCart(deleteFromCartModel)
     }
 
-    override suspend fun clearCart(userId: String): BaseResponseDTO {
-        return api.clearCart(userId)
+    override suspend fun clearCart(clearCartModel: ClearCartModel): BaseResponseDTO {
+        return api.clearCart(clearCartModel)
     }
 }

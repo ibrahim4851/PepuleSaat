@@ -14,6 +14,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
@@ -62,6 +64,18 @@ fun CartScreen(
             MediumTopAppBar(
                 title = {
                     Text(text = "Cart")
+                },
+                actions = {
+                    IconButton(onClick = {
+                        viewModel.onEvent(
+                            CartEvent.ClearCart("")
+                        )
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Delete,
+                            contentDescription = null
+                        )
+                    }
                 },
                 scrollBehavior = scrollBehavior
             )

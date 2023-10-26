@@ -3,6 +3,7 @@ package com.sultan.pepulesaat.data.network
 import com.sultan.pepulesaat.data.models.AddToCartModel
 import com.sultan.pepulesaat.data.models.BaseResponseDTO
 import com.sultan.pepulesaat.data.models.CategoriesResponseDTO
+import com.sultan.pepulesaat.data.models.ClearCartModel
 import com.sultan.pepulesaat.data.models.DeleteFromCartModel
 import com.sultan.pepulesaat.data.models.ProductDetailDTO
 import com.sultan.pepulesaat.data.models.ProductsResponseDTO
@@ -41,6 +42,6 @@ interface PepuleApi {
     suspend fun deleteFromCart(@Body deleteFromCartModel: DeleteFromCartModel): BaseResponseDTO
 
     @POST("clear_cart.php")
-    suspend fun clearCart(@Body userId: String): BaseResponseDTO
+    suspend fun clearCart(@Body clearCartModel: ClearCartModel): BaseResponseDTO
 
 }

@@ -83,6 +83,7 @@ class CartScreenViewModel @Inject constructor(
     }
 
     private fun clearCart() {
+        Log.i("userId", userId.toString())
         clearCartUseCase.executeClearCart(userId.toString()).onEach {
             when(it) {
                 is Resource.Success -> {
