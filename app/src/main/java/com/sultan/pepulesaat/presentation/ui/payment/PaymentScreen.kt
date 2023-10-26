@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -59,7 +60,7 @@ fun PaymentScreen(
         
         Spacer(modifier = Modifier.padding(18.dp))
 
-        CardNumber()
+        CardNumber(modifier = Modifier.align(Alignment.CenterHorizontally))
 
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -68,7 +69,9 @@ fun PaymentScreen(
                 modifier = Modifier.weight(4f),
                 value = cardExpire,
                 label = { Text("Son Kullanma Tarihi") },
-                onValueChange = { cardExpire = it }
+                onValueChange = {
+                    if (it.length <= 5) number = it
+                }
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -77,7 +80,10 @@ fun PaymentScreen(
                 modifier = Modifier.weight(3f),
                 label = { Text("CVV") },
                 value = cardCvv,
-                onValueChange = { cardCvv = it })
+                onValueChange = {
+                    if (it.length <= 3) number = it
+                }
+            )
         }
 
         Row(

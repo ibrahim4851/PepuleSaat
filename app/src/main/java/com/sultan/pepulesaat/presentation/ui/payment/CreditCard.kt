@@ -20,7 +20,7 @@ import com.steliospapamichail.creditcardmasker.utils.getCardTypeFromNumber
 import com.steliospapamichail.creditcardmasker.viewtransformations.CardNumberMask
 
 @Composable
-fun CardNumber() {
+fun CardNumber(modifier: Modifier) {
     var number by remember { mutableStateOf("") }
     OutlinedTextField(
         value = number,

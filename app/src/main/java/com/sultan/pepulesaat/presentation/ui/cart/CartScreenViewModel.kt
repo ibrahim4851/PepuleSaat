@@ -36,7 +36,8 @@ class CartScreenViewModel @Inject constructor(
             when (it) {
                 is Resource.Success -> {
                     val totalPrice = it.data!!.sumByDouble { if (it.saleState) it.salePrice ?: 0.0 else it.price }
-                    _state.value = CartScreenState(products = it.data, cartTotal = totalPrice)
+                    val formattedPrice = String.format("%.2f", totalPrice)
+                    _state.value = CartScreenState(products = it.data, cartTotal = formattedPrice)
                 }
 
                 is Resource.Error -> {
