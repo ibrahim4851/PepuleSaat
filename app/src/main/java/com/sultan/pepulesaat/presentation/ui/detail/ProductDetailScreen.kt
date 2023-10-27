@@ -135,11 +135,18 @@ fun ProductDetailScreen(
                         IconButton(
                             modifier = Modifier.weight(1f),
                             onClick = {
-                                viewModel.onEvent(
-                                    ProductDetailEvent
-                                        .AddToFavorite(state.product.id)
-                                )
-
+                                if(state.isFavorite) {
+                                    viewModel.onEvent(
+                                        ProductDetailEvent
+                                            .RemoveFavorite(state.product.id)
+                                    )
+                                }
+                                else{
+                                    viewModel.onEvent(
+                                        ProductDetailEvent
+                                            .AddToFavorite(state.product.id)
+                                    )
+                                }
                             }
                         )
                         {

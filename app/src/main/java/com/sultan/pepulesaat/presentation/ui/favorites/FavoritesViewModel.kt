@@ -37,7 +37,7 @@ class FavoritesViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private suspend fun removeFavorite(favoriteEntity: FavoriteEntity) {
+    private suspend fun removeFavorite(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
         repository.deleteFavorite(favoriteEntity)
     }
 

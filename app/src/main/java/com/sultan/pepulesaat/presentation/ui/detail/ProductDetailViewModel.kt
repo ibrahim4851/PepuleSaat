@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.sultan.pepulesaat.data.models.AddToCartModel
 import com.sultan.pepulesaat.data.models.ProductDTO
 import com.sultan.pepulesaat.data.network.Resource
+import com.sultan.pepulesaat.data.room.entity.FavoriteEntity
 import com.sultan.pepulesaat.data.room.mapper.toFavoriteEntity
 import com.sultan.pepulesaat.domain.repository.FavoriteRepository
 import com.sultan.pepulesaat.domain.usecase.AddToCartUseCase
@@ -24,7 +25,7 @@ import javax.inject.Inject
 class ProductDetailViewModel @Inject constructor(
     private val getProductDetailUseCase: GetProductDetailUseCase,
     private val addToCartUseCase: AddToCartUseCase,
-    private val sharedPreferences: SharedPreferences,
+    sharedPreferences: SharedPreferences,
     private val favoriteRepository: FavoriteRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -83,19 +84,20 @@ class ProductDetailViewModel @Inject constructor(
     private fun isFavorite(productId: Int) = viewModelScope.launch {
         val isFavorite = favoriteRepository.getFavoriteByProductId(userId, productId)
         if (isFavorite != null) {
-            val newState = _state.value.copy(isFavorite = true)
+            val newState = _state.value.copy(isFavorite = true, currentFavoriteEntity = isFavorite)
             _state.value = newState
         }
     }
 
-    private fun performAddFavorite(product: ProductDTO) = viewModelScope.launch {
-        favoriteRepository.insertFavorite(product.toFavoriteEntity(userId))
-        val newState = _state.value.copy(isFavorite = true)
+    private suspend fun performAddFavorite(product: ProductDTO) {
+        val favoriteEntity = product.toFavoriteEntity(userId)
+        favoriteRepository.insertFavorite(favoriteEntity)
+        val newState = _state.value.copy(isFavorite = true, currentFavoriteEntity = favoriteEntity)
         _state.value = newState
     }
 
-    private fun performRemoveFavorite(product: ProductDTO) = viewModelScope.launch {
-        favoriteRepository.deleteFavorite(favoriteRepository.getFavoriteByProductId(userId, product.id)!!)
+    private suspend fun performRemoveFavorite() {
+        favoriteRepository.deleteFavorite(_state.value.currentFavoriteEntity!!)
         val newState = _state.value.copy(isFavorite = false)
         _state.value = newState
     }
@@ -104,10 +106,13 @@ class ProductDetailViewModel @Inject constructor(
         when (event) {
             is ProductDetailEvent.AddToFavorite -> {
                 viewModelScope.launch {
-                    if (_state.value.isFavorite) {
-                        performRemoveFavorite(_state.value.product!!)
-                    }
                     performAddFavorite(_state.value.product!!)
+                }
+            }
+
+            is ProductDetailEvent.RemoveFavorite -> {
+                viewModelScope.launch {
+                    performRemoveFavorite()
                 }
             }
 

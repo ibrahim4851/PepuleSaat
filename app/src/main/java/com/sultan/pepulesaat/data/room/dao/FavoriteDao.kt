@@ -23,4 +23,8 @@ interface FavoriteDao {
 
     @Query("SELECT * FROM favoriteEntities WHERE productId = :productId AND userId = :userId")
     suspend fun getFavoriteByProductId(userId: String, productId: Int): FavoriteEntity?
+
+    /*@Query("DELETE FROM favoriteEntities WHERE productId = :productId AND userId = :userId")
+    suspend fun deleteFavoriteByUser(userId: String, productId: Int): FavoriteEntity?*/
+
 }
