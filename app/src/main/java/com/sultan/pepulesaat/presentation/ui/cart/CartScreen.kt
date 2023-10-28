@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.sultan.pepulesaat.R
+import com.sultan.pepulesaat.presentation.navigation.graphs.DetailsRoutes
 import com.sultan.pepulesaat.presentation.navigation.graphs.Graph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -115,6 +116,9 @@ fun CartScreen(
                                     viewModel.onEvent(
                                         CartEvent.RemoveFromCart(product.id)
                                     )
+                                },
+                                onClick = {
+                                    navController.navigate(DetailsRoutes.ProductDetails.route + "/${product.id}")
                                 }
                             )
                         }

@@ -1,36 +1,37 @@
 package com.sultan.pepulesaat.presentation.ui.payment
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import com.sultan.pepulesaat.R
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.steliospapamichail.creditcardmasker.utils.CardType
 import com.steliospapamichail.creditcardmasker.utils.getCardTypeFromNumber
 import com.steliospapamichail.creditcardmasker.viewtransformations.CardNumberMask
+import com.sultan.pepulesaat.R
 
 @Composable
-fun CardNumber(modifier: Modifier) {
-    var number by remember { mutableStateOf("") }
+fun CardNumber(
+    modifier: Modifier,
+    value: String,
+    onValueChange: (String) -> Unit
+) {
     OutlinedTextField(
-        value = number,
+        value = value,
         visualTransformation = CardNumberMask(" "),
-        onValueChange = {
-            if (it.length <= 16) number = it
+        onValueChange = { newValue ->
+            onValueChange(newValue)
         },
         label = { Text("Kredi Kartı Numarası") },
         trailingIcon = {
-            val iconRes = when (getCardTypeFromNumber(number)) {
+            val iconRes = when (getCardTypeFromNumber(value)) {
                 CardType.VISA -> R.drawable.visa
                 CardType.MASTERCARD -> R.drawable.mastercard
                 CardType.AMERICAN_EXPRESS -> R.drawable.amex
@@ -45,6 +46,7 @@ fun CardNumber(modifier: Modifier) {
                     .width(40.dp)
                     .padding(end = 10.dp)
             )
-        }
+        },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
     )
 }

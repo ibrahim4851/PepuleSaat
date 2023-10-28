@@ -15,4 +15,6 @@ interface FavoriteRepository {
 
     suspend fun getFavoriteByProductId(userId: String, productId: Int): FavoriteEntity?
 
+    suspend fun clearFavorites(userId: String)
+
 }

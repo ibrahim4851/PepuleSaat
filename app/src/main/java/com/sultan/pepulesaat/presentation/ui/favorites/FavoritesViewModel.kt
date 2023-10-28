@@ -41,11 +41,20 @@ class FavoritesViewModel @Inject constructor(
         repository.deleteFavorite(favoriteEntity)
     }
 
+    private suspend fun clearFavorites() = viewModelScope.launch {
+        repository.clearFavorites(userId)
+    }
+
     fun onEvent(event: FavoriteEvent) {
         when (event) {
             is FavoriteEvent.RemoveFavorite -> {
                 viewModelScope.launch {
                     removeFavorite(event.favoriteEntity)
+                }
+            }
+            is FavoriteEvent.ClearFavorites -> {
+                viewModelScope.launch {
+                    clearFavorites()
                 }
             }
             else -> {}
